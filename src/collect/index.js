@@ -1,7 +1,8 @@
 "use strict";
-
-const util = require("util");
-const exec = util.promisify(require("child_process").exec);
+const {
+  runCommandAndWaitForPattern,
+  killProcessTree,
+} = require("../utils/index");
 const NodeRunner = require("./node-runner.js");
 
 function getRunner(options) {
@@ -26,17 +27,33 @@ async function runOnUrl(url, options) {
 }
 
 async function startServerAndDetermineUrls(options) {
-  const urlsAsArray = Array.isArray(options.url)
-    ? options.url
-    : options.url
-    ? [options.url]
-    : [];
+  const urlsAsArray = options.url;
 
-  const { stdout, stderr } = await exec(options.startServerCommand);
+  process.stdout.write(
+    `Trying to start server with ${options.startServerCommand} \n`
+  );
 
-  process.stdout.write(`Started server \n`);
+  const {
+    child,
+    patternMatch,
+    stdout,
+    stderr,
+  } = await runCommandAndWaitForPattern(options.startServerCommand, null, {
+    timeout: options.startServerReadyTimeout,
+  });
 
-  return { urls: urlsAsArray, close: async () => server.close() };
+  process.stdout.write(
+    `Started a web server with "${options.startServerCommand}"...\n`
+  );
+
+  close = () => killProcessTree(child.pid);
+
+  return {
+    urls: urlsAsArray,
+    close: async () => {
+      /* something to kill the process based on pid */
+    },
+  };
 }
 
 async function runCommand(options) {

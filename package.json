@@ -1,6 +1,6 @@
 {
   "name": "@fedeaperez/amp-ci",
-  "version": "0.0.9",
+  "version": "0.1.4",
   "description": "AMP tooling for GitHub integration",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,5 +13,8 @@
   "bin": {
     "ampci": "./src/index.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "amphtml-validator": "^1.0.33",
+    "tree-kill": "^1.2.2"
+  }
 }

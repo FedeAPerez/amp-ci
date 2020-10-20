@@ -7,14 +7,14 @@ async function run() {
   process.stdout.write(`Executing AMP CI ${pkg.version} \n`);
 
   try {
-    process.stdout.write(require.resolve("amphtml-validator"));
+    require.resolve("amphtml-validator");
   } catch (e) {
     process.stderr.write("amphtml-validator is not found");
     process.exit(e.code);
   }
 
-  collectCmd.runCommand({
-    urls: ["http://localhost:3001/amp/comenzar-programacion-competitiva"],
+  await collectCmd.runCommand({
+    url: ["http://localhost:3001/amp/comenzar-programacion-competitiva"],
     startServerCommand: "npm run start",
   });
 
