@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-const util = require("util");
-const exec = util.promisify(require("child_process").exec);
+const collectCmd = require("./collect");
 
 async function run() {
   process.stdout.write(`Executing AMP CI\n`);
@@ -13,9 +12,11 @@ async function run() {
     process.exit(e.code);
   }
 
-  const { stdout, stderr } = await exec(
-    'amphtml-validator "http://localhost:3001/amp/comenzar-programacion-competitiva"'
-  );
+  collectCmd.runCommand({
+    urls: ["http://localhost:3001/amp/comenzar-programacion-competitiva"],
+    startServerCommand: "npm run start",
+  });
+
   process.exit(0);
 }
 
