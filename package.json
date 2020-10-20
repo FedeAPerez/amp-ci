@@ -1,0 +1,20 @@
+{
+  "name": "@fedeaperez/amp-cli",
+  "version": "0.0.1",
+  "description": "AMP tooling for GitHub integration",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FedeAPerez/amp-ci.git"
+  },
+  "bin": {
+    "ampci": "./index.js"
+  },
+  "dependencies": {
+    "amphtml-validator": "^1.0.33"
+  }
+}
