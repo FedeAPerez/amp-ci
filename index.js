@@ -2,9 +2,11 @@
 "use strict";
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
+var amphtmlValidator = require("amphtml-validator");
 
 async function run() {
   process.stdout.write(`Executing AMP CI\n`);
+  process.stdout.write(amphtmlValidator);
   const { stdout, stderr } = await exec(
     './node_modules/amphtml-validator "http://localhost:3001/amp/comenzar-programacion-competitiva"'
   );
