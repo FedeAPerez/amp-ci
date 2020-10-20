@@ -14,10 +14,7 @@ async function runOnUrl(url, options) {
   process.stdout.write(`Running AMP CI on ${url}\n`);
 
   try {
-    await runner.runUntilSuccess(url, {
-      ...options,
-      settings,
-    });
+    await runner.runUntilSuccess(url, options);
 
     process.stdout.write("done.\n");
   } catch (err) {
@@ -27,6 +24,7 @@ async function runOnUrl(url, options) {
 }
 
 async function startServerAndDetermineUrls(options) {
+  let close = async () => undefined;
   const urlsAsArray = options.url;
 
   process.stdout.write(
