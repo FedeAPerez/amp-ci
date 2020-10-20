@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 "use strict";
 const collectCmd = require("./collect");
+const pkg = require("../package.json");
 
 async function run() {
-  process.stdout.write(`Executing AMP CI\n`);
+  process.stdout.write(`Executing AMP CI ${pkg.version} \n`);
 
   try {
     process.stdout.write(require.resolve("amphtml-validator"));
