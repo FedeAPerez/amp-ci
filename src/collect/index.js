@@ -48,9 +48,7 @@ async function startServerAndDetermineUrls(options) {
 
   return {
     urls: urlsAsArray,
-    close: async () => {
-      /* something to kill the process based on pid */
-    },
+    close: close,
   };
 }
 
