@@ -6,7 +6,7 @@ const exec = util.promisify(require("child_process").exec);
 async function run() {
   process.stdout.write(`Executing AMP CI\n`);
   const { stdout, stderr } = await exec(
-    'amphtml-validator "http://localhost:3001/amp/comenzar-programacion-competitiva"'
+    './node_modules/amphtml-validator "http://localhost:3001/amp/comenzar-programacion-competitiva"'
   );
   process.exit(0);
 }

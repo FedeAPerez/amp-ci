@@ -1,6 +1,6 @@
 {
   "name": "@fedeaperez/amp-ci",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "AMP tooling for GitHub integration",
   "license": "Apache-2.0",
   "publishConfig": {
