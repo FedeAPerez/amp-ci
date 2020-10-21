@@ -17,11 +17,9 @@ class AmpRunner {
         patternMatch,
         stdout,
         stderr,
-      } = await runCommandAndWaitForPattern(
-        `amphtml-validator ${url}`,
-        null,
-        null
-      );
+      } = await runCommandAndWaitForPattern(`amphtml-validator ${url}`, null, {
+        timeout: 5000,
+      });
 
       pid = child.pid;
     } finally {
