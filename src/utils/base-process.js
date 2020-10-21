@@ -13,7 +13,6 @@ async function runCommandAndWaitForPattern(command, pattern, opts = {}) {
   let patternMatch = null;
   let resolve;
   let reject;
-  let errors;
   const timeoutPromise = new Promise((r) => setTimeout(r, timeout));
   const foundStringPromise = new Promise((r1, r2) => {
     resolve = r1;
@@ -35,7 +34,6 @@ async function runCommandAndWaitForPattern(command, pattern, opts = {}) {
     if (code !== 0) {
       const err = new Error(`Command exited with code ${code}`);
       Object.assign(err, output);
-      errors = output;
       resolve();
     }
   };
@@ -51,7 +49,7 @@ async function runCommandAndWaitForPattern(command, pattern, opts = {}) {
   child.stderr.off("data", stderrListener);
   child.off("exit", exitListener);
 
-  return { child, patternMatch, errors, ...output };
+  return { child, patternMatch, ...output };
 }
 
 module.exports = {
