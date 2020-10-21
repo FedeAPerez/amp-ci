@@ -11,7 +11,7 @@ function getRunner(options) {
 
 async function runOnUrl(url, options) {
   const runner = getRunner(options);
-  process.stdout.write(`Running AMP CI on ${url}\n`);
+  process.stdout.write(`\nRunning AMP CI on ${url}`);
 
   try {
     await runner.runUntilSuccess(url, options);
