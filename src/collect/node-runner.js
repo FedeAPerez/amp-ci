@@ -2,7 +2,7 @@
 const {
   runCommandAndWaitForPattern,
   killProcessTree,
-} = require("../utils/index");
+} = require("../utils/base-process");
 
 class AmpRunner {
   async run(url, options) {
