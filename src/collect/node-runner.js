@@ -2,7 +2,27 @@
 
 class AmpRunner {
   async run(url, options) {
-    process.stdout.write(`Running AMP CI TEST ${url} \n`);
+    let pid;
+    let close = async () => undefined;
+
+    close = (pid) => killProcessTree(pid);
+
+    try {
+      const {
+        child,
+        patternMatch,
+        stdout,
+        stderr,
+      } = await runCommandAndWaitForPattern(
+        `amphtml-validator ${url}`,
+        null,
+        null
+      );
+
+      pid = child.pid;
+    } finally {
+      await close();
+    }
   }
 
   async runUntilSuccess(url, options = {}) {
