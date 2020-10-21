@@ -16,7 +16,7 @@ async function runOnUrl(url, options) {
   try {
     await runner.runUntilSuccess(url, options);
 
-    process.stdout.write("done.\n");
+    process.stdout.write("✅ done.\n");
   } catch (err) {
     process.stdout.write("failed!\n");
     throw err;
@@ -28,7 +28,7 @@ async function startServerAndDetermineUrls(options) {
   const urlsAsArray = options.url;
 
   process.stdout.write(
-    `Trying to start server with ${options.startServerCommand} \n`
+    `✅ Trying to start server with ${options.startServerCommand} \n`
   );
 
   const {
@@ -41,7 +41,7 @@ async function startServerAndDetermineUrls(options) {
   });
 
   process.stdout.write(
-    `Started a web server with "${options.startServerCommand}"...\n`
+    `✅ Started a web server with "${options.startServerCommand}"...\n`
   );
 
   close = () => killProcessTree(child.pid);
@@ -63,7 +63,7 @@ async function runCommand(options) {
     await close();
   }
 
-  process.stdout.write(`Done running AMP CI!\n`);
+  process.stdout.write(`✅ Done running AMP CI!\n`);
 }
 
 module.exports = { runCommand };
