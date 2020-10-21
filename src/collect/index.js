@@ -28,7 +28,7 @@ async function startServerAndDetermineUrls(options) {
   const urlsAsArray = options.url;
 
   process.stdout.write(
-    `✅ Trying to start server with ${options.startServerCommand} \n`
+    `\n✅ Trying to start server with ${options.startServerCommand}`
   );
 
   const {
@@ -41,7 +41,7 @@ async function startServerAndDetermineUrls(options) {
   });
 
   process.stdout.write(
-    `✅ Started a web server with "${options.startServerCommand}"...\n`
+    `\n✅ Started a web server with "${options.startServerCommand}"...`
   );
 
   close = () => killProcessTree(child.pid);
