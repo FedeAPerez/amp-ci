@@ -4,6 +4,10 @@ const path = require("path");
 const collectCmd = require("./collect");
 const pkg = require("../package.json");
 
+const PASS_ICON = "✅";
+const WARN_ICON = "⚠️ ";
+const FAIL_ICON = "❌";
+
 const resolveRcFilePath = (pathToRcFile) => {
   if (typeof pathToRcFile === "string")
     return path.resolve(process.cwd(), pathToRcFile);
@@ -20,16 +24,16 @@ async function run() {
   try {
     require.resolve("amphtml-validator");
   } catch (e) {
-    process.stderr.write("amphtml-validator is not found");
-    process.exit(e.code);
+    process.stderr.write("\n❌ amphtml-validator dependency not found");
+    process.exit(1);
   }
 
   try {
     options = loadRcFile("./ampcirc.js");
+    process.stdout.write("\n✅ ampcirc file found");
   } catch (e) {
-    process.stderr.write("options file not found");
-    if (e) process.stderr.write("\n" + e);
-    process.exit(e.code);
+    process.stderr.write("\n❌ ampcirc file not found");
+    process.exit(1);
   }
 
   await collectCmd.runCommand(options.ci.collect);
