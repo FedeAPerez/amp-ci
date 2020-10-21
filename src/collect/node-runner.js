@@ -1,4 +1,8 @@
 "use strict";
+const {
+  runCommandAndWaitForPattern,
+  killProcessTree,
+} = require("../utils/index");
 
 class AmpRunner {
   async run(url, options) {
